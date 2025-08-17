@@ -52,7 +52,6 @@ pipeline {
                 sh '''
                 sed "s|nginx:.*|$DOCKER_IMAGE:$VERSION|g" nginx-deployment.yaml > updated-nginx.yaml
                 kubectl apply -f updated-nginx.yaml
-                kubectl rollout status deployment/nginx
                 '''
             }
         }
@@ -61,9 +60,6 @@ pipeline {
             steps {
                 sh '''
                 kubectl apply -f elk.yaml
-                kubectl rollout status deployment/elasticsearch
-                kubectl rollout status deployment/logstash
-                kubectl rollout status deployment/kibana
                 '''
             }
         }
