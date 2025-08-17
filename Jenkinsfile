@@ -18,7 +18,7 @@ pipeline {
                 script {
                     def commitMsg = sh(script: 'git log -1 --pretty=%B', returnStdout: true).trim()
                     echo "Commit message: ${commitMsg}"
-                    def matcher = commitMsg =~ /nginx:([\d\.]+)/
+                    def matcher = commitMsg =~ /nginx[: ]([\d\.]+)/
                     if (matcher) {
                         env.VERSION = matcher[0][1]
                         echo "Using nginx version: ${env.VERSION}"
@@ -31,7 +31,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE:$VERSION .'
+                sh 'docker build --pull -t $DOCKER_IMAGE:$VERSION .'
             }
         }
 
@@ -52,6 +52,18 @@ pipeline {
                 sh '''
                 sed "s|nginx:.*|$DOCKER_IMAGE:$VERSION|g" nginx-deployment.yaml > updated-nginx.yaml
                 kubectl apply -f updated-nginx.yaml
+                kubectl rollout status deployment/nginx
+                '''
+            }
+        }
+
+        stage('Deploy ELK to Kubernetes') {
+            steps {
+                sh '''
+                kubectl apply -f elk.yaml
+                kubectl rollout status deployment/elasticsearch
+                kubectl rollout status deployment/logstash
+                kubectl rollout status deployment/kibana
                 '''
             }
         }
