@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         KUBECONFIG = '/var/lib/jenkins/.kube/config'
-        DOCKER_IMAGE = 'yourdockerhubusername/nginx'
+        DOCKER_IMAGE = 'vipingnair/nginx'
     }
 
     stages {
