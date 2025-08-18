@@ -69,9 +69,10 @@ spec:
         ports:
         - containerPort: 5601
         env:
-        - name: ELASTICSEARCH_HOSTS
-          value: "https://elasticsearch.vipin.svc.cluster.local:9200"
-        - name: ELASTICSEARCH_SERVICEACCOUNT_TOKEN
+        - name: ELASTICSEARCH_USERNAME
+          value: "elastic"
+        - name:  ELASTICSEARCH_PASSWORD
+          value: "vipin@123"
           valueFrom:
             secretKeyRef:
               name: kibana-token-secret
