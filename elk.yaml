@@ -51,8 +51,6 @@ kind: Deployment
 metadata:
   name: kibana
   namespace: vipin
-  labels:
-    app: kibana
 spec:
   replicas: 1
   selector:
@@ -65,19 +63,8 @@ spec:
     spec:
       containers:
       - name: kibana
-        image: docker.elastic.co/kibana/kibana:8.9.2
-        ports:
-        - containerPort: 5601
-        env:
-        - name: ELASTICSEARCH_HOSTS
-          value: "https://elasticsearch.vipin.svc.cluster.local:9200"
-        - name: ELASTICSEARCH_SERVICE_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: kibana-token-secret
-              key: KIBANA_TOKEN
-        - name: ELASTICSEARCH_SSL_VERIFICATIONMODE
-          value: "none"
+        image
+
 ---
 apiVersion: v1
 kind: Service
