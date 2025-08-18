@@ -111,7 +111,7 @@ spec:
         - containerPort: 5044
         volumeMounts:
         - name: logstash-config
-          mountPath: /usr/share/logstash/pipeline
+          mountPath: /dev/sda2
       volumes:
       - name: logstash-config
         configMap:
