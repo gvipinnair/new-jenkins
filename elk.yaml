@@ -71,10 +71,13 @@ spec:
         env:
         - name: ELASTICSEARCH_HOSTS
           value: "https://elasticsearch.vipin.svc.cluster.local:9200"
-        - name: ELASTICSEARCH_USERNAME
-          value: "elastic"
-        - name: ELASTICSEARCH_PASSWORD
-          value: "vipin@123"
+        - name: ELASTICSEARCH_SERVICEACCOUNT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: kibana-token-secret
+              key: KIBANA_TOKEN
+        - name: ELASTICSEARCH_SSL_VERIFICATIONMODE
+          value: "none"  
 ---
 apiVersion: v1
 kind: Service
