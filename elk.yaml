@@ -98,3 +98,14 @@ spec:
     protocol: TCP
     name: http
   type: NodePort
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kibana-creds
+  namespace: vipin
+type: Opaque
+stringData:
+  ELASTICSEARCH_USERNAME: elastic
+  ELASTICSEARCH_PASSWORD: dmlwaW5AMTIz
