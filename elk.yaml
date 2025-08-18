@@ -67,15 +67,15 @@ spec:
         ports:
         - containerPort: 5601
         env:
-       - name: ELASTICSEARCH_SERVICE_TOKEN
+        - name: ELASTICSEARCH_SERVICE_TOKEN
           valueFrom:
             secretKeyRef:
               name: kibana-token-secret
               key: KIBANA_TOKEN
-      - name: ELASTICSEARCH_SSL_VERIFICATIONMODE
-        value: "none"
-      - name: ELASTICSEARCH_HOSTS
-        value: "http://elasticsearch:9200"
+        - name: ELASTICSEARCH_SSL_VERIFICATIONMODE
+          value: "none"
+        - name: ELASTICSEARCH_HOSTS
+          value: "http://elasticsearch:9200"
 ---            
 apiVersion: v1
 kind: Service
