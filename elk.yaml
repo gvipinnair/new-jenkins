@@ -43,7 +43,7 @@ spec:
     nodePort: 32000
     protocol: TCP
     name: http
-  type: ClusterIP
+  
 
 # Kibana Deployment + Service
 ---
