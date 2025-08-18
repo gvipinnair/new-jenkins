@@ -71,8 +71,6 @@ spec:
         env:
         - name: ELASTICSEARCH_USERNAME
           value: "elastic"
-        - name:  ELASTICSEARCH_PASSWORD
-          value: "vipin@123"
           valueFrom:
             secretKeyRef:
               name: kibana-token-secret
