@@ -112,7 +112,7 @@ spec:
         volumeMounts:
         - name: logstash-config
           mountPath: /usr/share/logstash/pipeline/logstash.config
-          subPath: logstash.confg
+          subPath: logstash.config
       volumes:
       - name: logstash-config
         configMap:
